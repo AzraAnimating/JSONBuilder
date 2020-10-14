@@ -14,7 +14,11 @@ public class JSONBuilder {
     }
 
     public void createObject(String name, String value) {
-        this.objects.put(name, "\"" + value + "\"");
+        if(value.startsWith("{") && value.endsWith("}") || value.startsWith("[") && value.endsWith("]")) {
+            this.objects.put(name, value);
+        } else {
+            this.objects.put(name, "\"" + value + "\"");
+        }
         this.objectNames.add(name);
     }
 
