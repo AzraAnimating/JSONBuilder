@@ -13,18 +13,20 @@ public class JSONBuilder {
         this.objectNames = new ArrayList<>();
     }
 
-    public void createObject(String name, String value) {
+    public JSONBuilder createObject(String name, String value) {
         if(value.startsWith("{") && value.endsWith("}") || value.startsWith("[") && value.endsWith("]")) {
             this.objects.put(name, value);
         } else {
             this.objects.put(name, "\"" + value + "\"");
         }
         this.objectNames.add(name);
+        return this;
     }
 
-    public void createObject(String name, int value) {
+    public JSONBuilder createObject(String name, int value) {
         this.objects.put(name,  Integer.toString(value));
         this.objectNames.add(name);
+        return this;
     }
 
     public String build() {
