@@ -29,6 +29,12 @@ public class JSONBuilder {
         return this;
     }
 
+    public JSONBuilder createObject(String name, boolean value) {
+        this.objects.put(name,  Boolean.toString(value));
+        this.objectNames.add(name);
+        return this;
+    }
+
     public String build() {
         StringBuilder builder = new StringBuilder();
         builder.append("{ ");
