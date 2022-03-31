@@ -5,8 +5,8 @@ import java.util.HashMap;
 
 public class JSONBuilder {
 
-    private HashMap<String, String> objects;
-    private ArrayList<String> objectNames;
+    private final HashMap<String, String> objects;
+    private final ArrayList<String> objectNames;
 
     public JSONBuilder() {
         this.objects = new HashMap<>();
@@ -29,8 +29,50 @@ public class JSONBuilder {
         return this;
     }
 
+    public JSONBuilder createObject(String name, long value) {
+        this.objects.put(name,  Long.toString(value));
+        this.objectNames.add(name);
+        return this;
+    }
+
+    public JSONBuilder createObject(String name, double value) {
+        this.objects.put(name,  Double.toString(value));
+        this.objectNames.add(name);
+        return this;
+    }
+
+    public JSONBuilder createObject(String name, float value) {
+        this.objects.put(name,  Float.toString(value));
+        this.objectNames.add(name);
+        return this;
+    }
+
+    public JSONBuilder createObject(String name, short value) {
+        this.objects.put(name,  Short.toString(value));
+        this.objectNames.add(name);
+        return this;
+    }
+
+    public JSONBuilder createObject(String name, byte value) {
+        this.objects.put(name,  Byte.toString(value));
+        this.objectNames.add(name);
+        return this;
+    }
+
     public JSONBuilder createObject(String name, boolean value) {
         this.objects.put(name,  Boolean.toString(value));
+        this.objectNames.add(name);
+        return this;
+    }
+
+    public JSONBuilder createObject(String name, JSONBuilder value) {
+        this.objects.put(name,  value.build());
+        this.objectNames.add(name);
+        return this;
+    }
+
+    public JSONBuilder createObject(String name, Object value) {
+        this.objects.put(name,  value.toString());
         this.objectNames.add(name);
         return this;
     }
